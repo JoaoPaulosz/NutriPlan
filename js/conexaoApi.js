@@ -15,4 +15,9 @@ async function cadastroUsuario(emailCadastro, senhaCadastro, nomeCadastro){
       .then(response => response.text())
       .then(result => console.log(result))
       .catch(error => console.log('error', error));
+    return conexao;
+}
+
+export const conexaoApi = {
+  cadastroUsuario,
 }
