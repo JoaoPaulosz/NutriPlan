@@ -1,8 +1,8 @@
 async function cadastroUsuario(emailCadastro, senhaCadastro, nomeCadastro){
     var formdata = new FormData();
-    formdata.append("usuario_email",emailCadastro.value);
-    formdata.append("usuario_senha",senhaCadastro.value);
-    formdata.append("usuario_nome", nomeCadastro.value);
+    formdata.append("usuario_email",emailCadastro);
+    formdata.append("usuario_senha",senhaCadastro);
+    formdata.append("usuario_nome", nomeCadastro);
     
     var requestOptions = {
       method: 'POST',
@@ -10,12 +10,31 @@ async function cadastroUsuario(emailCadastro, senhaCadastro, nomeCadastro){
       redirect: 'follow',
       mode:'no-cors'
     };
-    
-    const conexao = fetch("https://localhost:7256/Usuario", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+    try{
+      const conexao = await fetch("https://localhost:7256/Usuario", requestOptions) 
+      const usuario = await Login(emailCadastro,senhaCadastro)
+      if(!usuario.ok){
+        return false
+      }else{
+        const usuarioConvertido = await usuario.json()
+        return usuarioConvertido
+      }
+      
+    }catch(error){
+      return false
+    }
+}
+
+async function Login(email,senha){
+  try{
+    const conexao = await fetch(`https://localhost:7256/Usuario?email=${email}&senha=${senha}` ,{
+      mode:'no-cors'
+    });
+    if(conexao.ok)
     return conexao;
+  }catch(error){
+    return null
+  }
 }
 
 export const conexaoApi = {
