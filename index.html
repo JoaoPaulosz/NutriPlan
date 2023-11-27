@@ -6,20 +6,21 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
     <title>Nutrição App</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
     <div class="container">
-        <nav class="sidebar">
+
+        <nav class="navbar">
+            <button class="menu-btn" onclick="toggleMenu()">☰</button>
             <ul>
-                <li><a>Cadastrar Alimento</a></li>
-                <li><a>Cadastrar Refeição</a></li>
-                <li><a>Cadastrar Receita</a></li>
+                <li><a href="javascript:void(0);" onclick="selectNavItem(this)" id="cadastroAlimento">Cadastrar Alimento</a></li>
+                <li><a href="javascript:void(0);" onclick="selectNavItem(this)" id="cadastroRefeicao">Cadastrar Refeição</a></li>
+                <li><a href="javascript:void(0);" onclick="selectNavItem(this)" id="cadastroReceita">Cadastrar Receita</a></li>
             </ul>
         </nav>
 
-        <main class="content">
-            <!-- Conteúdo principal será carregado aqui -->
+        <main class="content" id="conteiner">
         </main>
     </div>
 
@@ -27,6 +28,6 @@
         <p>&copy; 2023 Nutrição App</p>
     </footer>
 
-    <script src="./js/index.js"></script>
+    <script src="./js/index.js" type="module"></script>
 </body>
 </html>
